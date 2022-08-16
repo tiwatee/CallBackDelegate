@@ -8,36 +8,30 @@ namespace DelegateTwo
 {
     internal class EvenNumberAddition
     {
-        public delegate void EvenNumberAdd (int count);
 
         /// <summary>
         /// A method to add the even numbers between 1 and 5000
+        /// A callback function using func delegate to return the percentage left
         /// </summary>
         /// <param name="cb"></param>
-        public static void EvenAdd(EvenNumberAdd cb)
+        public void EvenAdd()
         {
+            Func<int, int> percentDone = EvenNumAddCallback;
+
             int evenSum = 0;
             for (int i=0; i < 5000; i++)
             {
+                Console.WriteLine($"{100- percentDone(i)}% to go");
                 if (((i+1) % 2) == 0)
                 {
                     evenSum += i + 1;
                 }
-                cb(i + 1);
-                //if (((i+1) % 10) == 0)
-                //{
-                //    cb(i + 1);
-                //}
             }
             Console.WriteLine($"The sum of the even numbers between 1 and 5000 is { evenSum}");
         }
-        public static void EvenNumAddCallback()
+        int EvenNumAddCallback(int progress)
         {
-            EvenNumberAdd evenNumAdd = delegate (int percent)
-            {
-                var answer = percent / 100;
-                Console.WriteLine(answer);
-            };
+            return progress/50;
         }
 
     }

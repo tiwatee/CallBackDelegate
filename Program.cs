@@ -4,15 +4,8 @@
     {
         static void Main(string[] args)
         {
-            EvenNumberAddition evenNumberAddition = new EvenNumberAddition();
-
-            EvenNumberAddition.EvenAdd(CompletedRange);
-        }
-
-
-        static void CompletedRange (int Num)
-        {
-            Console.WriteLine($"1 to {Num} completed");
+            EvenNumberAddition evenNumberAddition = new EvenNumberAddition(); //An instantiation of the class
+            evenNumberAddition.EvenAdd(); //Calling the method for the addition process
         }
     }
 }
