@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace DelegateTwo
 {
+    public delegate int CallbackDelegate(int progress);
     internal class EvenNumberAddition
     {
 
         /// <summary>
         /// A method to add the even numbers between 1 and 5000
-        /// A callback function using func delegate to return the percentage left
+        /// A callback function using delegate to return the percentage left
         /// </summary>
         /// <param name="cb"></param>
-        public void EvenAdd()
+        /// 
+        
+        public void EvenAdd(CallbackDelegate callbackDelegate)
         {
-            Func<int, int> percentDone = EvenNumAddCallback;
-
             int evenSum = 0;
             for (int i=0; i < 5000; i++)
             {
-                Console.WriteLine($"{100- percentDone(i)}% to go");
+                Console.WriteLine($"{100- callbackDelegate(i)}% to go");
                 if (((i+1) % 2) == 0)
                 {
                     evenSum += i + 1;
@@ -29,10 +30,12 @@ namespace DelegateTwo
             }
             Console.WriteLine($"The sum of the even numbers between 1 and 5000 is { evenSum}");
         }
-        int EvenNumAddCallback(int progress)
-        {
-            return progress/50;
-        }
 
+
+        //callback method
+        public int EvenNumAddCallback(int progress)
+        {
+            return progress / 50;
+        }
     }
 }
